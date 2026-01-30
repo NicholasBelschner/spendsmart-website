@@ -3,138 +3,234 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SpendSmart - Financial Mindfulness App</title>
+    <title>SpendSmart – See the opportunity cost of every purchase</title>
     <style>
+        :root {
+            --bg: #ffffff;
+            --text: #000000;
+            --text-secondary: #555555;
+            --gray: #888888;
+            --gray-light: #eeeeee;
+            --card-bg: #fafafa;
+            --card-border: rgba(0, 0, 0, 0.08);
+            --accent: rgb(51, 139, 115);
+            --accent-soft: rgba(51, 139, 115, 0.15);
+            --accent-bg: rgb(245, 250, 247);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
-            color: #1a1a1a;
-            background-color: #ffffff;
+            color: var(--text);
+            background: var(--bg);
         }
-        
+
         .container {
-            max-width: 800px;
+            max-width: 720px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 32px 24px;
         }
-        
+
+        /* Header – matches app toolbar */
         header {
             text-align: center;
-            padding: 20px 20px 40px;
-            border-bottom: 1px solid #e5e5e5;
+            padding: 24px 0 48px;
+            border-bottom: 1px solid var(--card-border);
         }
-        
-        h1 {
-            font-size: 48px;
-            font-weight: 300;
-            margin-top: -8px;
-            margin-bottom: 16px;
-            color: #000000;
-        }
-        
-        .tagline {
-            font-size: 20px;
-            color: #666666;
-            font-weight: 300;
-            margin-bottom: 32px;
-        }
-        
+
         .app-icon {
-            width: 240px;
-            height: 240px;
-            margin: 0 auto 0px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
         }
-        
+
         .app-icon img {
             width: 100%;
             height: 100%;
             object-fit: contain;
         }
-        
-        section {
-            margin: 60px 0;
-        }
-        
-        h2 {
-            font-size: 32px;
+
+        .brand {
+            font-size: 22px;
             font-weight: 300;
-            margin-bottom: 24px;
-            color: #000000;
+            letter-spacing: 2px;
+            font-variant-numeric: tabular-nums;
+            color: var(--text);
         }
-        
-        p {
-            font-size: 18px;
-            color: #333333;
+
+        .tagline {
+            font-size: 17px;
+            color: var(--text-secondary);
+            font-weight: 400;
+            margin-top: 8px;
+        }
+
+        section {
+            margin: 48px 0;
+        }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            color: var(--accent);
+            margin-bottom: 12px;
+            font-variant-numeric: tabular-nums;
+        }
+
+        h2 {
+            font-size: 28px;
+            font-weight: 300;
             margin-bottom: 16px;
-            line-height: 1.8;
+            color: var(--text);
         }
-        
+
+        h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 14px;
+            line-height: 1.75;
+        }
+
+        /* Cards – app-style rounded panels */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 20px 0;
+        }
+
+        .card.highlight {
+            background: var(--accent-bg);
+            border-color: rgba(51, 139, 115, 0.25);
+        }
+
+        .vision-bullet {
+            display: flex;
+            gap: 14px;
+            margin-bottom: 20px;
+            align-items: flex-start;
+        }
+
+        .vision-bullet:last-child {
+            margin-bottom: 0;
+        }
+
+        .vision-bullet .icon {
+            width: 28px;
+            height: 28px;
+            color: var(--accent);
+            flex-shrink: 0;
+            font-size: 20px;
+            line-height: 1;
+        }
+
+        .vision-bullet .title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .vision-bullet .text {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .philosophy-block {
+            margin-bottom: 24px;
+        }
+
+        .philosophy-block strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
         .features {
             list-style: none;
-            margin: 32px 0;
         }
-        
+
         .features li {
-            padding: 16px 0;
-            border-bottom: 1px solid #f0f0f0;
-            font-size: 18px;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--gray-light);
+            font-size: 16px;
+            color: var(--text-secondary);
         }
-        
-        .features li:before {
+
+        .features li:last-child {
+            border-bottom: none;
+        }
+
+        .features li::before {
             content: "•";
-            color: #000000;
+            color: var(--text);
             font-weight: bold;
-            margin-right: 12px;
+            margin-right: 10px;
         }
-        
+
         .cta {
             text-align: center;
-            margin: 60px 0;
-            padding: 40px;
-            background: #f8f8f8;
+            margin: 56px 0;
+            padding: 40px 24px;
+            background: var(--card-bg);
             border-radius: 12px;
+            border: 1px solid var(--card-border);
         }
-        
-        .app-store-badge {
-            display: inline-block;
-            margin: 20px 10px;
-            height: 60px;
+
+        .disclaimer {
+            background: var(--card-bg);
+            padding: 20px 24px;
+            border-radius: 8px;
+            margin: 24px 0;
+            font-size: 13px;
+            color: var(--gray);
+            border: 1px solid var(--card-border);
         }
-        
+
         footer {
-            margin-top: 80px;
-            padding-top: 40px;
-            border-top: 1px solid #e5e5e5;
+            margin-top: 64px;
+            padding-top: 32px;
+            border-top: 1px solid var(--card-border);
             text-align: center;
-            color: #666666;
+            color: var(--gray);
+            font-size: 14px;
         }
-        
+
         footer a {
-            color: #000000;
+            color: var(--text);
             text-decoration: none;
-            margin: 0 16px;
+            margin: 0 12px;
         }
-        
+
         footer a:hover {
             text-decoration: underline;
         }
-        
-        .disclaimer {
-            background: #f8f8f8;
-            padding: 24px;
-            border-radius: 8px;
-            margin: 32px 0;
-            font-size: 14px;
-            color: #666666;
+
+        .closing {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--accent);
+            font-style: italic;
+            margin-top: 32px;
+        }
+
+        /* Smooth scroll for in-page nav if we add it */
+        html {
+            scroll-behavior: smooth;
         }
     </style>
 </head>
@@ -142,76 +238,140 @@
     <div class="container">
         <header>
             <div class="app-icon">
-                <img src="images/logo.png" alt="SpendSmart Logo">
+                <img src="images/logo.png" alt="SpendSmart">
             </div>
-            <h1>SpendSmart</h1>
+            <div class="brand">SPENDSMART</div>
             <p class="tagline">See the opportunity cost of every purchase</p>
         </header>
-        
+
         <section>
-            <h2>About</h2>
+            <div class="section-label">ABOUT</div>
+            <h2>Financial mindfulness</h2>
             <p>
-                SpendSmart is a minimalist financial mindfulness app that helps you see the hidden cost of your spending. 
-                Every dollar you spend is time traded. This app shows you what that money could become if invested instead.
+                SpendSmart is a minimalist app that helps you see the hidden cost of your spending.
+                Every dollar you spend is time traded. The app shows you what that money could become if invested instead.
             </p>
             <p>
                 No guilt, no hype. Just clear awareness of what you're trading for each purchase.
             </p>
         </section>
-        
+
         <section>
-            <h2>Features</h2>
-            <ul class="features">
-                <li>Track expenses manually or connect your bank via Plaid</li>
-                <li>See missed investment opportunities with compound interest projections</li>
-                <li>Category-based insights with motivational alternatives</li>
-                <li>Clean, minimalist design focused on clarity</li>
-                <li>Privacy-first: All data stored locally on your device</li>
-            </ul>
-        </section>
-        
-        <section>
-            <h2>Philosophy</h2>
-            <p>
-                <strong>Money = Time</strong><br>
-                Every dollar you spend is life hours traded. Choose how you spend your finite time wisely.
-            </p>
-            <p>
-                <strong>Own Less, Experience More</strong><br>
-                Freedom comes from owning less. Seek free activities: walking, hiking, conversations, 
-                window-shopping, home brewing, sober game nights.
-            </p>
-            <p>
-                <strong>Mindful Choices</strong><br>
-                No guilt, no hype. Just clear awareness of what you're trading for each purchase.
-            </p>
-        </section>
-        
-        <div class="cta">
-            <h2>Download SpendSmart</h2>
-            <p>Available soon on the App Store</p>
-            <!-- Replace with actual App Store badge when available -->
-            <!-- <a href="YOUR_APP_STORE_LINK">
-                <img src="app-store-badge.svg" alt="Download on the App Store" class="app-store-badge">
-            </a> -->
-        </div>
-        
-        <section>
-            <div class="disclaimer">
-                <strong>Disclaimer:</strong> Hypothetical projections based on assumed 7% annual return. 
-                Not financial/investment advice. Past performance ≠ future results.
+            <div class="section-label">PHILOSOPHY</div>
+            <h2>A way of life</h2>
+
+            <div class="card">
+                <div class="philosophy-block">
+                    <strong>Money = Time</strong><br>
+                    Every dollar you spend is life hours traded. Choose how you spend your finite time wisely.
+                </div>
+                <div class="philosophy-block">
+                    <strong>Own Less, Experience More</strong><br>
+                    Freedom comes from owning less. Seek free activities: walking, hiking, conversations,
+                    window-shopping, home brewing, sober game nights.
+                </div>
+                <div class="philosophy-block">
+                    <strong>See Opportunity Cost</strong><br>
+                    Every expense has a hidden cost: what it could become if invested. The app helps you see those missed opportunities.
+                </div>
+                <div class="philosophy-block">
+                    <strong>Mindful Choices</strong><br>
+                    No guilt, no hype. Just clear awareness of what you're trading for each purchase.
+                </div>
+                <div class="philosophy-block">
+                    <strong>Be part of the future</strong><br>
+                    Instead of consuming, be excited and a part of the future. Position yourself to benefit from growth in tech, AI, and advanced innovation.
+                </div>
             </div>
         </section>
-        
+
+        <section>
+            <div class="section-label">THE FUTURE</div>
+            <h2>The new infrastructure</h2>
+            <p>
+                Electricity didn't just power light bulbs—it transformed how we live, work, and create.
+                AI and advanced tech are the next infrastructure. Everything will change.
+            </p>
+
+            <div class="card">
+                <h3>What's coming</h3>
+                <div class="vision-bullet">
+                    <span class="icon">○</span>
+                    <div>
+                        <div class="title">Universal income</div>
+                        <div class="text">As automation expands, universal income becomes a possibility. The economy will be fundamentally reshaped.</div>
+                    </div>
+                </div>
+                <div class="vision-bullet">
+                    <span class="icon">○</span>
+                    <div>
+                        <div class="title">Work becomes optional</div>
+                        <div class="text">Smart work may no longer be required for survival. Meaning, purpose, and choice become central.</div>
+                    </div>
+                </div>
+                <div class="vision-bullet">
+                    <span class="icon">○</span>
+                    <div>
+                        <div class="title">A different world</div>
+                        <div class="text">The future won't look like today. Those who see it coming and prepare will thrive.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card highlight">
+                <h3>Your choice now</h3>
+                <p style="margin-bottom: 0;">
+                    Invest now instead of consume—and stay knowledgeable. You're not just saving money.
+                    You're setting yourself up to participate in the future that's being built.
+                </p>
+            </div>
+
+            <p class="closing">Invest now. Stay knowledgeable. Thrive.</p>
+        </section>
+
+        <section>
+            <div class="section-label">INVESTING IN THE APP</div>
+            <h2>See missed opportunities</h2>
+            <p>
+                The app shows hypothetical projections: what your spending could have become if invested,
+                with compound growth over time. It uses growth assumptions for tech and innovation—so you see
+                the opportunity cost of every purchase in future-oriented terms.
+            </p>
+            <p>
+                Category-based insights help you understand where your money goes and what you're trading for.
+                Clean, minimalist design keeps the focus on clarity.
+            </p>
+        </section>
+
+        <section>
+            <div class="section-label">FEATURES</div>
+            <h2>What the app does</h2>
+            <ul class="features">
+                <li>Track expenses and see missed investment opportunities with compound growth projections</li>
+                <li>Category-based insights with motivational alternatives</li>
+                <li>Clean, minimalist design focused on clarity</li>
+                <li>Privacy-first: data stored locally on your device</li>
+            </ul>
+        </section>
+
+        <div class="cta">
+            <h2>Download SpendSmart</h2>
+            <p>Available on the App Store</p>
+        </div>
+
+        <section>
+            <div class="disclaimer">
+                <strong>Disclaimer:</strong> Projections in the app are hypothetical illustrations based on assumed growth rates.
+                Not financial or investment advice. Past performance does not guarantee future results.
+            </div>
+        </section>
+
         <footer>
             <a href="privacy-policy.html">Privacy Policy</a>
             <a href="data-retention.html">Data Retention Policy</a>
             <a href="mailto:privacy@spendsmart.app">Contact</a>
-            <p style="margin-top: 24px; font-size: 14px;">
-                © 2025 SpendSmart. All rights reserved.
-            </p>
+            <p style="margin-top: 20px;">© 2025 SpendSmart. All rights reserved.</p>
         </footer>
     </div>
 </body>
 </html>
-
